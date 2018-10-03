@@ -18,16 +18,16 @@
 
     <br><br>
     <a href="/parts" class="btn btn-light active" role="button" aria-pressed="true">Показать список элементов</a>
-    <a href="/addPart" class="btn btn-info active" role="button" aria-pressed="true">Заполнить БД тестовыми данными</a>
+    <a href="/populateDB" class="btn btn-info active" role="button" aria-pressed="true">Заполнить БД тестовыми данными</a>
     <a href="/addPart" class="btn btn-primary active" role="button" aria-pressed="true">Добивить элемент</a>
     <br><br><br>
     <br>
 
     <br><br>
     <form th:action="@{/add}" th:object="${part}" method="POST">
-                <div class="form-group">
+        <div class="form-group">
             <label>Название</label>
-            <input required type="text" class="form-control"  th:field="*{name}">
+            <input required type="text" class="form-control" th:field="*{name}">
         </div>
         <div class="form-group">
             <label>Количество</label>
@@ -37,8 +37,8 @@
         <div class="form-group">
             <p>Необходимо для сборки'?'</p>
             <select required th:field="*{important}" class="custom-select">
-                    <option th:value="1" selected>Да</option>
-                    <option th:value="0">Нет</option>
+                <option th:value="1" selected>Да</option>
+                <option th:value="0">Нет</option>
             </select>
         </div>
         <br><br>

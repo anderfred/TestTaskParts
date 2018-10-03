@@ -41,7 +41,7 @@
         <tr th:each="part : ${parts}">
             <td><span th:text="${part.name}"></span></td>
             <td><span th:text="${part.qty}"></span></td>
-            <td><span th:text="${part.important}? 'Да' : 'Нет'"></span> </td>
+            <td><span th:text="${part.important}? 'Да' : 'Нет'"></span></td>
             <td><a href="#" data-th-href="@{/update(id=${part.id})}" class="btn btn-info btn-sm active" role="button"
                    aria-pressed="true">Изменить</a></td>
             <td><a href="#" data-th-href="@{/delete(id=${part.id})}" class="btn btn-warning btn-sm active" role="button"
@@ -49,11 +49,11 @@
         </tr>
         </tbody>
     </table>
-<script>
-    $( document ).ready(function() {
-       localizeAndConfigTables();
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            localizeAndConfigTables();
+        });
+    </script>
     <br>
     <p><span th:text="'Количество компьютеров доступное для сборки: ' + ${compQty}"></span></p>
 </div>

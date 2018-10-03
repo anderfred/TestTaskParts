@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/")
@@ -18,16 +18,17 @@ public class DefaultController {
 
 
     @GetMapping("/")
-        public String index(){
+    public String index() {
         return "index";
     }
+
     @GetMapping("/parts")
     public String getAllParts(Model model) {
-        //model.addAttribute("compQty", partService.compQty());
         model.addAttribute("parts", partService.findAll());
         model.addAttribute("compQty", partService.compQty());
         return "parts";
     }
+
     @GetMapping("/update")
     public String updatePart(@RequestParam("id") String id, Model model) {
         model.addAttribute("part", partService.findById(Integer.parseInt(id)).get());
@@ -41,24 +42,34 @@ public class DefaultController {
         p.setImportant(important);
         p.setQty(qty);
         partService.save(p);
-        //model.addAttribute("parts", partService.findAll());
         return "redirect:/parts";
     }
-    @GetMapping ("/delete")
-    public String deletePart(@RequestParam("id") String id, Model model) {
+
+    @GetMapping("/delete")
+    public String deletePart(@RequestParam("id") String id) {
         partService.deleteById(Integer.parseInt(id));
-        //model.addAttribute("parts", partService.findAll());
         return "redirect:/parts";
     }
-    @GetMapping ("/add")
-    public String add(Model model){
+
+    @GetMapping("/add")
+    public String add(Model model) {
         model.addAttribute("part", new Part());
         return "add";
     }
+
     @PostMapping("/add")
-    public String addPart(@ModelAttribute("part") Part part, Model model){
+    public String addPart(@ModelAttribute("part") Part part) {
         partService.save(part);
-        //model.addAttribute("parts", partService.findAll());
+        return "redirect:/parts";
+    }
+
+    @GetMapping("/populateDB")
+    public String populate() {
+        try {
+            partService.populateDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return "redirect:/parts";
     }
 }

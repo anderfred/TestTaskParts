@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PartRepository  extends CrudRepository<Part, Integer> {
+public interface PartRepository extends CrudRepository<Part, Integer> {
 }
