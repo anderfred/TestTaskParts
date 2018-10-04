@@ -23,3 +23,5 @@
 /nbdist/
 /.nb-gradle/
 .mvn/
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
